@@ -7,8 +7,8 @@ import java.util.HashMap;
  */
 public class T0013_RomanToInteger {
     public static void main(String[] args) {
-        int i3 = romanToInt3("MCMXCIV");
-        System.out.println(i3);
+        int i4 = romanToInt4("MCMXCIV");
+        System.out.println(i4);
     }
 
     /**
@@ -98,6 +98,28 @@ public class T0013_RomanToInteger {
             result+=char1;
         }
 
+        return result;
+    }
+
+    /**
+     * 根据第二版改为switch后没性能没啥太大变化
+     */
+    public static int romanToInt4(String s) {
+        char[] chars = s.toCharArray();
+        int result = 0;
+        for (int i = chars.length-1; i >= 0;i--){
+            // 如果不是首位则需要判断前一位
+            if (i != 0){
+                int v1 = getValue(chars[i]);
+                int v2 = getValue(chars[i-1]);
+                if (v1 > v2){
+                    int m = v1 - v2- v2;
+                    result+=m;
+                    continue;
+                }
+            }
+            result += getValue(chars[i]);
+        }
         return result;
     }
 
