@@ -8,8 +8,8 @@ import java.util.Arrays;
 public class T00027_RemoveElement {
     public static void main(String[] args) {
         // [0,1,4,0,3]
-        int[] nums = new int[]{3,2,2,3};
-        int i = removeElement(nums,3);
+        int[] nums = new int[]{3                                    ,3};
+        int i = removeElement3(nums,5);
         System.out.println(i);
     }
 
@@ -23,11 +23,12 @@ public class T00027_RemoveElement {
      *  猎人只负责把猎物装起来（低位后面的都是我们需要的），猎人总会预留好口袋装猎狗抓来的猎物（low++）
      *  当猎狗到达森林的边缘就结束今天的任务（溢出 跳出）
      *
-     * 执行用时：4 ms, 在所有 Java 提交中击败了100.00%的用户
+     * 执行用时：1 ms, 在所有 Java 提交中击败了100.00%的用户
      * 内存消耗：37.2 MB, 在所有 Java 提交中击败了15.17%的用户
      */
-    public static int removeElement(int[] nums, int val) {
+    public static int removeElement1(int[] nums, int val) {
         if (nums.length == 0) return 0;
+        // ↓ 实测可有可无
         if (nums.length == 1 && nums[0] != val ) return 1;
         int low = 0;
         int high = 0;
@@ -55,8 +56,42 @@ public class T00027_RemoveElement {
                 // low位加一
                 low++;
             }
-
         } while (high <= nums.length - 1);
+        return low;
+    }
+
+    /**
+     * 第二版: 双指针,代码简介了很多
+     */
+    public static int removeElement2(int[] nums, int val) {
+        int j = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != val){
+                nums[j] = nums[i];
+                j++;
+            }
+        }
+        return j;
+    }
+
+    /**
+     * 第三版:思想还是双指针,根据第一版优化而来
+     * 执行用时：0 ms, 在所有 Java 提交中击败了100.00%的用户
+     * 内存消耗：37.1 MB, 在所有 Java 提交中击败了27.65%的用户
+     */
+    public static int removeElement3(int[] nums, int val) {
+        int low = 0;
+        for (int high = 0; high < nums.length; high++) {
+            if (nums[low] == val) {
+                while (nums[high] == val){
+                    if (high>=nums.length-1) return low;
+                    high++;
+                }
+                nums[low] = nums[high];
+                nums[high] = val;
+            }
+            low++;
+        }
         return low;
     }
 }
