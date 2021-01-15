@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class T00027_RemoveElement {
     public static void main(String[] args) {
         // [0,1,4,0,3]
-        int[] nums = new int[]{3                                    ,3};
+        int[] nums = new int[]{3,3};
         int i = removeElement3(nums,5);
         System.out.println(i);
     }
