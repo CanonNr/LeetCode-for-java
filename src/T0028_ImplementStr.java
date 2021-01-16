@@ -76,6 +76,11 @@ public class T0028_ImplementStr {
 
         return -1;
     }
+
+    /**
+     * 根据第一版优化来的
+     * 1ms
+     */
     public static int strStr4(String haystack, String needle) {
         if (needle.length() == 0) return 0;
         if (needle.length() > haystack.length()) return -1;
@@ -84,12 +89,10 @@ public class T0028_ImplementStr {
         for (int i = 0; i < arr1.length; i++) {
             if (arr1[i] == arr2[0]){
                 int flag = 1;
-
                     for (int j = 1; j < arr2.length && (i+j)<arr1.length && arr1[i+j] == arr2[j]; j++) {
                         flag+=1;
                     }
                     if (flag == arr2.length) return i;
-
             }
         }
 
