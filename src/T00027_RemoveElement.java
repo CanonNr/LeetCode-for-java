@@ -8,8 +8,8 @@ import java.util.Arrays;
 public class T00027_RemoveElement {
     public static void main(String[] args) {
         // [0,1,4,0,3]
-        int[] nums = new int[]{3,3};
-        int i = removeElement3(nums,5);
+        int[] nums = new int[]{3,2,2,3};
+        int i = removeElement4(nums,3);
         System.out.println(i);
     }
 
@@ -93,5 +93,27 @@ public class T00027_RemoveElement {
             low++;
         }
         return low;
+    }
+
+
+    public static int removeElement4(int[] nums, int val) {
+        int low = 0;
+        int high = 0;
+
+        while (true){
+            if (high<nums.length){
+                if (nums[high]==val){
+                    high++;
+                }else {
+                    nums[low] = nums[high];
+                    low++;
+                    high++;
+                }
+            }else {
+                break;
+            }
+        }
+        return low;
+
     }
 }
