@@ -6,7 +6,7 @@
 public class T00026_RemoveDuplicatesFromSortedArray {
     public static void main(String[] args) {
         int[] nums = new int[]{0,0,1,1,1,2,2,3,3,4};
-        int i = removeDuplicates1(nums);
+        int i = removeDuplicates3(nums);
         System.out.println(i);
     }
 
@@ -63,5 +63,28 @@ public class T00026_RemoveDuplicatesFromSortedArray {
             nums[++l] = nums[h];
         }
         return l+1;
+    }
+
+
+    public static int removeDuplicates3(int[] nums) {
+        if (nums.length <= 1) return nums.length;
+
+        int low = 0;
+        int high = 1;
+        while (true){
+            if (high<nums.length){
+                if (nums[low] == nums[high]){
+                    high++;
+                }else if(nums[low] < nums[high]){
+                    low++;
+                    nums[low] = nums[high];
+                }
+            }else {
+                break;
+            }
+
+        }
+        return low+1;
+
     }
 }
