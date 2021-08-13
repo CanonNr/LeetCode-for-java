@@ -1,13 +1,51 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class T0015_3Sum {
     public static void main(String[] args) {
-        int[] i = {1,2,4,6,-2,-1,-5,0,-1,-1,-1,2,-4,9,-2,5};
+        int[] i = {-1,0,1,2,-1,-4};
 //        int[] i = {0,0,0,0};
-        List<List<Integer>> list = threeSumX(i);
+        List<List<Integer>> list = threeSum(i);
         System.out.println(list);
+    }
+
+//    public static List<List<Integer>> threeSum(int[] nums) {
+//        List<List<Integer>> list = new ArrayList<>();
+//        if(nums.length < 3) return list;
+//        Arrays.sort(nums);
+//        int a = 0;
+//        int b = 1;
+//        int c = 2;
+//        while (a<nums.length){
+//            a++;
+//        }
+//        return null;
+//    }
+    public static List<List<Integer>> threeSum(int[] nums) {
+        Set<List<Integer>> list = new HashSet<>();
+        if(nums.length < 3) return new LinkedList<>(list);
+        Arrays.sort(nums);
+        int max = nums[nums.length-1];
+        for (int i = 0; i < nums.length; i++) { ;
+            for (int j = i+1; j < nums.length; j++) {
+//                if (j>=2 && nums[j]==nums[j-1]) continue;
+                int t = nums[i] + nums[j];
+                for (int k = j+1; k < nums.length; k++) {
+                    int t2 = t + nums[k];
+                    if (t2==0){
+                        LinkedList<Integer> integers = new LinkedList<>();
+                        integers.add(nums[i]);
+                        integers.add(nums[j]);
+                        integers.add(nums[k]);
+                        list.add(integers);
+                        break;
+                    }else if(t2+max <0){
+                        break;
+                    }
+
+                }
+            }
+        }
+        return new LinkedList<>(list);
     }
 
 //    public static List<List<Integer>> threeSum(int[] nums) {
