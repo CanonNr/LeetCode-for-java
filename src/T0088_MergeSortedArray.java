@@ -21,7 +21,7 @@ public class T0088_MergeSortedArray {
     // 从nums1的最后一位开始，从大到小安排
     // 执行用时：2 ms, 在所有 Java 提交中击败了17.71%的用户
     // 内存消耗：38.4 MB, 在所有 Java 提交中击败了65.77%的用户
-    public static void merge1(int[] nums1, int m, int[] nums2, int n) {
+    public static void merge(int[] nums1, int m, int[] nums2, int n) {
         if (n==0) return;
         for (int i = nums1.length-1; i >= 0; i--) {
             // 下面两个判断用于 n和m的出界的问题
